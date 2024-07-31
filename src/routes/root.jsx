@@ -1,4 +1,4 @@
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Form, Link, Outlet, useLoaderData } from "react-router-dom";
 
 export default function Root() {
   const { contacts } = useLoaderData();
@@ -13,9 +13,11 @@ export default function Root() {
             <div id="search-spinner" aria-hidden hidden={true} />
             <div className="sr-only" aria-live="polite"></div>
           </form>
-          <form method="post">
-            <button type="submit">New</button>
-          </form>
+          <Form method="post">
+            <button className="cursor-pointer" type="submit">
+              New
+            </button>
+          </Form>
         </div>
         <nav>
           {contacts.length ? (
