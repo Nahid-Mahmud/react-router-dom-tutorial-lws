@@ -53,7 +53,17 @@ export default function Contact() {
 
 function Favorite({ contact }) {
   const fetcher = useFetcher();
-  const favorite = contact?.favorite;
+  // eslint-disable-next-line react/prop-types
+  let favorite = contact?.favorite;
+  if (fetcher?.formData) {
+    favorite = fetcher.formData.get("favorite") === "true";
+  }
+
+  // updated way
+
+  // eslint-disable-next-line react/prop-types
+  // const favorite = fetcher.formData ? fetcher.formData.get("favorite") === "true" : contact.favorite;
+
   return (
     <fetcher.Form method="post">
       <button

@@ -24,30 +24,35 @@ const router = createBrowserRouter([
     action: createContactAction,
     children: [
       {
-        index: true,
-        element: <Index />,
-      },
-      {
-        path: "/contacts/:contactId",
-        element: <Contact />,
-        loader: getContactLoader,
-        action: updateContactFavAction,
-      },
-      {
-        path: "/contacts/:contactId/edit",
-        element: <EditContact />,
-        loader: getContactLoader,
-        action: updateContactAction,
-      },
-      {
-        path: "contacts/:contactId/destroy",
-        action: deleteContactAction,
-        errorElement: (
-          <div>
-            <h1>Oh no!</h1>
-            <p>Something went wrong</p>
-          </div>
-        ),
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            index: true,
+            element: <Index />,
+          },
+          {
+            path: "/contacts/:contactId",
+            element: <Contact />,
+            loader: getContactLoader,
+            action: updateContactFavAction,
+          },
+          {
+            path: "/contacts/:contactId/edit",
+            element: <EditContact />,
+            loader: getContactLoader,
+            action: updateContactAction,
+          },
+          {
+            path: "contacts/:contactId/destroy",
+            action: deleteContactAction,
+            errorElement: (
+              <div>
+                <h1>Oh no!</h1>
+                <p>Something went wrong</p>
+              </div>
+            ),
+          },
+        ],
       },
     ],
   },
